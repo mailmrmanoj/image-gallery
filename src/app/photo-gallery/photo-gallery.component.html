@@ -1,0 +1,50 @@
+<div class="row col-md-12">
+  <div [hidden]="showSearch" class="row col-md-12">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter image url</label>
+        <input type="text" class="form-control" [(ngModel)]="imageUrl" placeholder="Enter image url">
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="exampleInputPassword1">Enter image name</label>
+        <input type="text" class="form-control" [(ngModel)]="imageName" placeholder="Image Name">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-check">
+        <label class="form-check-label">&nbsp;</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-pos"
+        (click)="showImage(imageUrl,imageName);imageUrl='';imageName=''">Submit</button>&nbsp;
+      <i class="fa fa-search fa-2x search-align" (click)="showSearch = !showSearch"></i>
+      <i class="fa fa-2x  fa-arrow-up search-align" [hidden]="sortIcon"  (click)="sortAscending('asc');sortIcon=!sortIcon"></i>
+      <i class="fa fa-2x  fa-arrow-down search-align" [hidden]="!sortIcon"  (click)="sortAscending('desc');sortIcon=!sortIcon"></i>
+
+    </div>
+  </div>
+  <div [hidden]="!showSearch" class="row col-md-12">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="exampleInputPassword1">Search image by name</label>
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Enter Name">
+      </div>
+      <button type="submit" class="btn btn-primary btn-pos"
+        (click)="showSearch = !showSearch;searchTerm=''">Cancel</button>&nbsp;
+    </div>
+
+  </div>
+</div>
+<div class="row">
+  <div class="row card-group">
+    <div class="col-md-4 image-padding" *ngFor="let item of imageLists  | filter:searchTerm">
+      <div class="card">
+        <img class="card-img-top" [src]="item.imageUrl" [alt]="item.imageName" />
+        <p class="center-name">{{item.imageName}}</p>
+      </div>
+    </div>
+  </div>
+</div>

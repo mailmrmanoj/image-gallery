@@ -1,0 +1,18 @@
+.center-name{
+    text-align: center;
+}
+
+.image-padding{
+    padding: 20px;
+}
+
+.btn-pos{
+    position: relative;
+    top: 3px;
+}
+
+.search-align{
+    position: relative;
+    top: 8px;
+    cursor: pointer;
+}
